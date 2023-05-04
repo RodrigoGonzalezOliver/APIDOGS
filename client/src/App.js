@@ -1,10 +1,11 @@
 import './App.css';
 import {Route} from "react-router-dom";
-//import landing from "./views/landing";
 import CardsContainer from "./views/CardsContainer";
 import {useDispatch, useSelector} from "react-redux";
 import { getDogs } from './redux/actions';
 import { useEffect } from 'react';
+import Landing from "./components/Landing";
+import NavBar from './components/NavBar';
 
 function App() {
   const dispatch = useDispatch();
@@ -16,11 +17,15 @@ function App() {
   const dog = useSelector((state) => state.dogs)
   console.log(dog)
   return (
-    <div className="App">
-      <Route path="/home">
-        <CardsContainer dog={dog} />
-      </Route>
-    </div>
+    <nav>
+      <NavBar/>
+      <div className="App">
+        <Route exact path="/" component={Landing}/>
+        <Route path="/home">
+          <CardsContainer dog={dog} />
+        </Route>
+      </div>
+    </nav>
   );
 }
 
