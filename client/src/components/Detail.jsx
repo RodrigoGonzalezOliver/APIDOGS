@@ -18,9 +18,7 @@ export default function Detail() {
         return null;
     }
 
-    const { nombre, image, añosDeVida, peso, altura, temperaments } = breedDetail;
-    console.log(breedDetail);
-
+    const { nombre, imagen, añosDeVida, peso, altura, temperaments } = breedDetail;
     return (
         <div className={style.detailContainer}>
             <Link to={'/home'} className={style.backDetail}>
@@ -28,7 +26,7 @@ export default function Detail() {
             </Link>
             <div className={style.details}>
                 <div className={style.detailsImg}>
-                    <img src={image} alt="" />
+                    <img src={imagen} alt="imagen" />
                 </div>
                 <div className={style.detailBreed}>
                     <h1>{nombre}</h1>

@@ -34,10 +34,10 @@
 
     if (breed) {
       const temperaments = breed.temperament.split(',').map((t) => t.trim()); // Separar y mapear los temperamentos
-
+      console.log(breed)
       const dogDetail = {
         id: breed.id,
-        imagen: breed.image,
+        imagen: `https://cdn2.thedogapi.com/images/${breed.reference_image_id}.jpg`,
         nombre: breed.name,
         altura: `${breed.height.metric} cm`,
         peso: `${breed.weight.metric} kg`,
@@ -45,7 +45,7 @@
         temperaments: temperaments,
       };
 
-      res.json(dogDetail);
+      res.send(dogDetail);
     } else {
       res.status(404).json({ message: 'Raza no encontrada' });
     }
@@ -54,6 +54,20 @@
     res.status(500).json({ message: 'Error al obtener el detalle de la raza' });
   }
 };
+
+// const getDogId = async (req, res) => {
+//   try {
+//     // Buscar por id de raza.
+//     const { idRaza } = req.params;
+//     const allBreeds = await getAllDogs();
+//     const breedById = allBreeds.filter((breed) => breed.id == idRaza);
+//     breedById.length
+//         ? res.status(200).send(breedById)
+//         : res.status(404).send('Breed not found');
+// } catch (error) {
+//     res.status(400).send('Error en el servidor');
+// }
+// };
 
 const createDog = async (req, res) => {
   try {
