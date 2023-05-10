@@ -1,0 +1,25 @@
+.NavBar{
+    display: flex;
+    list-style-type: none;
+    padding: 5px 10%;
+}
+
+.home{
+  display: inline-block;
+  padding: 0 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 600;
+}
+
+.create{
+  display: inline-block;
+  padding: 0 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 600;
+}
+
+.NavBar :hover{
+  transform: scale(1.1);
+}

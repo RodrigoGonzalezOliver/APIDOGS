@@ -1,4 +1,4 @@
-body{background: url("../img/perroescritorio.jpg") no-repeat center center fixed; 
+body{background: url("../img/dogrosa.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -19,3 +19,18 @@ body{background: url("../img/perroescritorio.jpg") no-repeat center center fixed
     margin-top: 2%;
     margin-bottom: 2%;
 }
+
+.pagination{
+    background-color: #7953aa;
+    color: white;
+    padding: 7px 12px;
+    display: inline-block;
+    font-size: 15px;
+    margin: 2px;
+    transition: 300ms ease;
+}
+
+.pagination:hover{
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5%);
+  }

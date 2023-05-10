@@ -1,0 +1,141 @@
+.backDetail {
+    font-size: 1.3rem;
+    padding: 5px 15px;
+    background-color: rgb(154, 102, 223);
+    background: linear-gradient(
+    rgb(245, 122, 245), rgb(143, 79, 202), rgb(132, 17, 185));
+    color: black;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    margin-bottom: 4rem;
+    box-shadow: 4 4 20px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    transition: 500ms ease;
+}
+
+.backDetail:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.detailContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem;
+}
+
+.details {
+    border: 0.5px solid black;
+    background: rgb(207, 140, 221);
+    border-radius: 0.8rem;
+    box-shadow: 5 5 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    opacity: 0.9;
+}
+
+@media (min-width: 1200px) {
+    .details {
+        flex-direction: row;
+    }
+}
+
+.detailBreed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60rem;
+    height: 50rem;
+}
+
+.detailBreed h1 {
+    font-size: 2.5rem;
+}
+
+.detailBreed h2 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin: 1;
+}
+
+.detailBreed h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+
+.caracteristBreed {
+    display: flex;
+    gap: 1rem;
+}
+
+.detailBreed h1 {
+    text-transform: uppercase;
+}
+
+.caracterist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+    width: 15rem;
+    height: 6rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+    background-color: rgb(131, 75, 196);
+    overflow: hidden;
+}
+
+.temperamentsDetail {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    border: 1px solid black;
+    align-items: center;
+    background-color: rgb(194, 122, 201);
+}
+
+.temperamentsDetail h2 {
+    margin: 1rem 0;
+}
+
+.temperamentsInfo {
+    width: 20rem;
+    max-height: 20rem;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* grid-template-columns: repeat(8, 1fr); */
+    gap: 0.5rem;
+    padding: 2rem;
+}
+
+.temperamentsInfo h2 {
+    margin: 0;
+    width: max-content;
+    font-size: 1.3rem;
+    padding: 5px 15px;
+    border: 0px solid black;
+    border-radius: 0.5rem;
+}
+
+.detailsImg {
+    display: flex;
+    justify-content: center;
+}
+
+.detailsImg img {
+    width: 20rem;
+    height: 20rem;
+    border-right: 0px solid black;
+    border-radius: 0.5rem 0.5rem 0 0;
+    object-fit: cover;
+    object-position: center;
+}

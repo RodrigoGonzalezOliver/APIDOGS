@@ -1,38 +1,98 @@
-const axios = require("axios");
+ const axios = require("axios");
+ const {Op} = require("sequelize");
 
-const getAllDogs = async (req, res) => {
+ const getAllDogs = async (req, res) => {
+   try {
+
+     const response = await axios.get('https://api.thedogapi.com/v1/breeds');
+
+     const dogs = response.data.map((dog) => {
+       return {
+         id: dog.id,
+         imagen: dog.image.url,
+         nombre: dog.name,
+         altura: `${dog.height.metric} cm`,
+         peso: `${dog.weight.metric} kg`,
+         añosDeVida: `${dog.life_span} años`,
+         temperament: `${dog.temperament}`
+       };
+     });
+
+     res.json(dogs);
+   } catch (error) {
+     console.error(error);
+
+     res.status(500).json({ message: 'Error al obtener las razas de perros' });
+   }
+ };
+
+ const getDogId = async (req, res) => {
+  const { idRaza } = req.params;
   try {
+    const response = await axios.get(`https://api.thedogapi.com/v1/breeds/${idRaza}`);
+    const breed = response.data;
 
-    const response = await axios.get('https://api.thedogapi.com/v1/breeds');
+    if (breed) {
+      const temperaments = breed.temperament.split(',').map((t) => t.trim()); // Separar y mapear los temperamentos
 
-    const dogs = response.data.map((dog) => {
-      return {
-        id: dog.id,
-        imagen: dog.image.url,
-        nombre: dog.name,
-        altura: `${dog.height.metric} cm`,
-        peso: `${dog.weight.metric} kg`,
-        añosDeVida: `${dog.life_span} años`
+      const dogDetail = {
+        id: breed.id,
+        imagen: breed.image,
+        nombre: breed.name,
+        altura: `${breed.height.metric} cm`,
+        peso: `${breed.weight.metric} kg`,
+        añosDeVida: `${breed.life_span} `,
+        temperaments: temperaments,
       };
-    });
 
-    res.json(dogs);
+      res.json(dogDetail);
+    } else {
+      res.status(404).json({ message: 'Raza no encontrada' });
+    }
   } catch (error) {
     console.error(error);
-
-    res.status(500).json({ message: 'Error al obtener las razas de perros' });
+    res.status(500).json({ message: 'Error al obtener el detalle de la raza' });
   }
 };
 
-const getDogById = async (id) => {
+const createDog = async (req, res) => {
   try {
-    const response = await axios.get(`http://localhost:3001/dogs/${id}`);
-    const data = response.data;
-  
-    return data;
+    const { id, imagen, nombre, altura, peso, añosDeVida, temperaments } = req.body;
+
+    const dogDetail = {
+      id,
+      imagen,
+      nombre,
+      altura,
+      peso,
+      añosDeVida,
+      temperaments
+    };
+
+    res.status(201).json(dogDetail);
   } catch (error) {
     console.error(error);
+    res.status(500).json({ message: 'Error al crear el perro' });
   }
-}
+};
 
-module.exports = {getAllDogs, getDogById};
+const getBreedsName = async (req, res) => {
+  try {
+    // Buscar por nombre de raza.
+    const { name } = req.query;
+    const allBreeds = await getAllDogs();
+    if (!name) return res.status(200).send(allBreeds);
+    // Buscamos los que coincidan pro nombre.
+    const breedsByName = allBreeds.filter((breed) =>
+        breed.name.toLowerCase().includes(name.toLowerCase())
+    );
+    // Verificamos respuesta de array vacio.
+    breedsByName.length
+        ? res.status(200).send(breedsByName)
+        : res.status(404).send('Breed not found');
+} catch (error) {
+    res.status(400).send('Error en el servidor');
+}
+};
+
+module.exports = {getAllDogs, getDogId, createDog, getBreedsName};

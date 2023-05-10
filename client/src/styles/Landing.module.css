@@ -1,12 +1,33 @@
-.Landing {
-    text-align: center;
-  }
-  
-.Landing button {
-    margin-top: 20px;
-  }
-  
+.landing {
+  display: flex;
+  width: max-content;
+  margin: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+}
 
-/* nav {
-    display: none;
-  } */
+.h1{
+  font-family: sans-serif;
+}
+  
+.button {
+  text-decoration: none;
+  border: 0;
+  background: linear-gradient(
+    rgb(238, 142, 238), rgb(156, 97, 211), rgb(132, 17, 185));
+  border-radius: 8px;
+  display: inline-block;
+  font-size: 18px;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 10px;
+  color: black;
+  cursor: pointer;
+  transition: 400ms ease;
+  margin-top: 10px;
+  }
+
+
+  .button :hover{
+    background: black;
+    color: white;
+  }
